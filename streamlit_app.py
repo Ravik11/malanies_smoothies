@@ -35,8 +35,9 @@ st.success(f"You have selected: {selected_ingredients}")
 if selected_ingredients:
     ingredients_string=''   
     for x in selected_ingredients:
-        ingredients_string+=x + ' '
-        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+        ingredients_string += x + ' '
+        st.subheader (x + 'Nutrition Information')
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + x)
         sf_df=st.dataframe(data=smoothiefroot_response.json(),use_container_width=True)
         st.write (ingredients_string)  
         my_insert_stmt = """INSERT INTO smoothies.public.orders (ingredients, name_on_order) 
